@@ -17,6 +17,8 @@
             
                 if (empty($_POST["email"])) {
                     $emailErr = "Email is required";
+                } elseif (!filter_var(test_input($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+                        $emailErr = "Invalid email format";
                 } else {
                     $email = test_input($_POST["email"]);
                 }
@@ -55,12 +57,14 @@
                 <button type="submit" class="btn btn-primary">Submit</button><br><br>
             </form>
             <?php
-                echo "<h2>Your Input:</h2>";
-                echo "Name: $name";
-                echo "<br>";
-                echo "Email: $email";
-                echo "<br>";
-                echo "Comment: $comment";
+                if ($nameErr === "" && $emailErr === "") {
+                    echo "<h2>Your Input:</h2>";
+                    echo "Name: $name";
+                    echo "<br>";
+                    echo "Email: $email";
+                    echo "<br>";
+                    echo "Comment: $comment";
+                }
             ?>
         </div>
     </body>
