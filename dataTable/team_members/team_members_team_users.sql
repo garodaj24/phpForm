@@ -16,28 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `teams`
+-- Table structure for table `team_users`
 --
 
-DROP TABLE IF EXISTS `teams`;
+DROP TABLE IF EXISTS `team_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `teams` (
+CREATE TABLE `team_users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `user_id` int NOT NULL,
+  `team_id` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx` (`user_id`),
+  KEY `team_id_idx` (`team_id`),
+  CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `teams`
+-- Dumping data for table `team_users`
 --
 
-LOCK TABLES `teams` WRITE;
-/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-INSERT INTO `teams` VALUES (1,'Barcelona','2020-11-03 14:00:53'),(2,'Real Madrid','2020-11-03 14:01:03'),(3,'Liverpool','2020-11-03 14:01:16');
-/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
+LOCK TABLES `team_users` WRITE;
+/*!40000 ALTER TABLE `team_users` DISABLE KEYS */;
+INSERT INTO `team_users` VALUES (1,1,1,'2020-11-04 08:23:33'),(2,1,3,'2020-11-04 08:23:49'),(3,2,1,'2020-11-04 08:24:00'),(4,2,2,'2020-11-04 08:24:07'),(5,2,3,'2020-11-04 08:24:11'),(6,3,2,'2020-11-04 08:24:22'),(7,5,1,'2020-11-04 08:24:31'),(8,5,2,'2020-11-04 08:24:37');
+/*!40000 ALTER TABLE `team_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-04 13:05:39
+-- Dump completed on 2020-11-04 13:05:38

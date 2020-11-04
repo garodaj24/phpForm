@@ -27,10 +27,7 @@ CREATE TABLE `users` (
   `name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `team_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `team_id_idx` (`team_id`),
-  CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `users` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +37,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Garod','garod700@gmail.com','2020-11-03 13:56:55',1),(2,'test','test@gmail.com','2020-11-03 13:58:25',1),(3,'test2','test2@gmail.com','2020-11-03 13:58:42',2),(4,'test3','test3@gmail.com','2020-11-03 13:58:52',2),(5,'test4','test4@gmail.com','2020-11-03 13:59:02',1);
+INSERT INTO `users` VALUES (1,'Garod','garod700@gmail.com','2020-11-03 13:56:55'),(2,'test','test@gmail.com','2020-11-03 13:58:25'),(3,'test2','test2@gmail.com','2020-11-03 13:58:42'),(4,'test3','test3@gmail.com','2020-11-03 13:58:52'),(5,'test4','test4@gmail.com','2020-11-03 13:59:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-04 11:39:00
+-- Dump completed on 2020-11-04 13:05:39

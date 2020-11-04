@@ -5,10 +5,13 @@
     <body> 
         <?php
             require './connectDb.php';
-            $sql = "SELECT users.name, email, teams.name team_name
-            FROM users
-            INNER JOIN teams
-            WHERE users.team_id = teams.id";
+            $sql = "SELECT u.name, u.email, GROUP_CONCAT(distinct(t.name)) team_name
+            FROM users u
+                INNER JOIN team_users tu
+                ON u.id = tu.user_id
+                INNER JOIN teams t
+                ON t.id = tu.team_id
+            GROUP BY u.id";
 
             $result = $conn->query($sql);
 
