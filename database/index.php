@@ -13,7 +13,13 @@
 
         public function select($query) {
             $result = $this->connection->query($query);
-            return $result;
+            $finalResult = [];
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    array_push($finalResult,$row);
+                }
+            }
+            return $finalResult;
         }
 
         public function insert($table, $data) {
@@ -51,16 +57,13 @@
                 ON t.id = tu.team_id
             GROUP BY u.id";
     $result = $db->select($sql);
-    if ($result->num_rows > 0) {
-        echo "<table><tr><th>Name</th><th>Email</th><th>Team Name</th></tr>";
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td><td>".$row["team_name"]."</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+    
+    echo "<table><tr><th>Name</th><th>Email</th><th>Team Name</th></tr>";
+    foreach ($result as $row) {
+        echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td><td>".$row["team_name"]."</td></tr>";
     }
+    echo "</table>";
 
-    $insert_array = ["name"=>"JOE", "email"=>"joe@gmail.com"];
-    $db->update('users', $insert_array, "id = 8");
+    // $insert_array = ["name"=>"JOE", "email"=>"joe@gmail.com"];
+    // $db->update('users', $insert_array, "id = 8");
 ?>
